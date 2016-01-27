@@ -1,0 +1,73 @@
+$mi-width: rem(40);
+$mi-height: rem(30);
+
+.menu-icon {
+
+  position: fixed;
+  z-index: 2;
+  right: rem(30);
+  top: rem(30);
+  height: $mi-height;
+  width: $mi-width;
+  cursor: pointer;
+  
+  > .bars,
+  &:before,
+  &:after {
+    background: #000;
+    width: $mi-width;
+    height: 1px;
+    border-radius: 15px;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    transform: rotateZ(0deg);
+  }
+
+  &:before {
+    top: 0;
+    transform: rotateZ(0deg);
+    transition: top .4s .4s ease-in-out, transform .4s ease-in-out;
+    will-change: top, transform;
+  }
+
+  &:after {
+    top: 100%;
+    transform: rotateZ(0deg);
+    transition: top .4s .4s ease-in-out, transform .4s ease-in-out;
+    will-change: top, transform;
+  }
+
+  > .bars {
+    opacity: 1;
+    transform: scale(1);
+    transition: all .3s .4s ease-in-out;
+    transition-delay: .4s;
+    position: absolute;
+    top: rem(17);
+  }
+  
+  &.-active {
+
+    &:before {
+      top: 12px;
+      transform: rotateZ(-135deg);
+      transition: top .4s ease-in-out, transform .4s .4s ease-in-out;
+    }
+
+    &:after {
+      top: 12px;
+      transform: rotateZ(135deg);
+      transition: top .4s ease-in-out, transform .4s .4s ease-in-out;
+    }
+
+    > .bars {
+      opacity: 0;
+      transform: scale(.35);
+      transition: all .3s ease-in-out;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.header {
+  width: 100%;
+  @include outer-container();
+}
+
+.body{
+
+  &.-nav-open {
+
+    .header {
+      width: 100%;
+    }
+
+    .content {
+      position: relative;
+
+      &:after {
+        background-color: #000;
+        transition: background-color .7s ease-in-out;
+      }
+    }
+  }
+  .content {
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      background-color: transparent;
+      transition: background-color .7s ease-in-out;
+    }
+  }
+}

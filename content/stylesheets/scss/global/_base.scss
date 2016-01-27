@@ -1,0 +1,57 @@
+:root {
+  font-family: 'monoid-regular';
+  font-size: rem(10);
+  background: transparent;
+  @include hidpi(1.5) {
+    font-family: 'monoid-retina';
+  }
+}
+* {
+  webkit-font-smoothing: antialiased;
+}
+
+strong, 
+bold {
+  font-family: 'monoid-bold';
+}
+
+em {
+  font-family: 'monoid-italic';
+}
+
+.body {
+  display: flex;
+
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0 rem(20);
+  @include media($small) {
+    padding: 0 rem(55);
+  }
+  @include media($medium) {
+    padding: 0 rem(95);
+  }
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  margin-top: 60px;
+  @include outer-container();
+}
+h2.page-title {
+  font-size: modular-scale(1);
+  @include media($small) {
+    display: inline-block;
+    transform: rotate(-90deg);
+    transform-origin: left;
+    position: fixed;
+    left: rem(28);
+    bottom: 21px;
+    
+  }
+
+  @include media($medium) {
+    left: rem(44);
+  }
+}

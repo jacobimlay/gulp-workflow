@@ -1,0 +1,71 @@
+@include font-face('monoid-regular', '/fonts/monoid-regular');
+@include font-face('monoid-bold', '/fonts/monoid-bold');
+@include font-face('monoid-italic', '/fonts/monoid-italic');
+@include font-face('monoid-retina', '/fonts/monoid-retina');
+
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,400italic,300italic,700,300);
+
+
+::selection {
+  color: #fff;
+  background: rgba(0,0,0,1);
+}
+
+  h5{ font-size: modular-scale(1); }
+  h4{ font-size: modular-scale(2); }
+  h3{ font-size: modular-scale(3); }
+  h2{ font-size: modular-scale(4); }
+  h1{ font-size: modular-scale(5); letter-spacing: -4px; font-weight: 700; }
+
+  h1, h2, h3, h4 { 
+    font-family: "Roboto Condensed";
+    text-transform: uppercase;
+    line-height: .8; 
+  }
+
+  .content {
+    a {
+      color: #000;
+      position: relative;
+      height: auto;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        background: #000;
+        left: 0;
+        right: 50%;
+        transition: all .1s ease-in-out;
+
+      }
+      &:after {
+        left: 50%;
+        right: 0;
+      }
+      &:hover {
+        &:before {
+          left: 5%;
+          bottom: rem(-2);
+        }
+        &:after {
+          right: 5%;
+          bottom: rem(-2);
+        }
+      }
+      &:active {
+        &:before {
+          left: 50%;
+          opacity: 0.5;
+          bottom: rem(-2);
+        }
+        &:after {
+          right: 50%;
+          opacity: 0.5;
+          bottom: rem(-2);
+        }
+      }
+    }
+  }

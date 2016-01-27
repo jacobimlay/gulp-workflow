@@ -1,0 +1,88 @@
+.main-nav {
+    list-style: none;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    text-align: right;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    counter-reset: nav-items;
+  
+  > .item {
+    counter-increment: nav-items;
+    position: relative;
+    padding: rem(10) 0; 
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><filter id=\'blur\'><feGaussianBlur stdDeviation=\'5\' /></filter></svg>#blur");
+    transition: all .4s cubic-bezier(0.535, 1, 0.515, 0.905);
+    will-change: all;
+    transform: translateY(80px);
+
+    @for $i from 1 through 30 {
+      &:nth-of-type(#{$i}) {
+        transition-delay: (#{$i * 70}ms);
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0%;
+      bottom: 0%;
+      left: 0;
+      right: 0;
+      transition: all .4s ease-in-out;
+    }
+  }
+
+  > .item > .link {
+
+    transition: all .4s ease-in-out;
+    &:after {
+      content: counter(nav-items);
+      font-size: 5px; 
+      color: inherit;
+      position: absolute;
+      right: rem(-10);
+    }
+
+    @for $i from 1 through 30 {
+
+      &:nth-of-type(#{$i}) {
+        transition-delay: (#{$i * 70}ms);
+      }
+    }
+
+    &,
+    &:visited {
+      color: #fff;
+      text-decoration: none;
+      font-size: modular-scale(0);
+      font-weight: 200;
+      letter-spacing: rem(5.5);
+      word-spacing: rem(-10);
+      text-transform: lowercase;
+    }
+  }
+
+  &.-active {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: all .3s .2s ease-in-out;
+
+    > .item {
+      transform: translateY(0px);
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><filter id=\'blur\'><feGaussianBlur stdDeviation=\'0\' /></filter></svg>#blur");
+
+      &:after {
+        bottom: 100%;
+        transition: all .2s ease-in-out;
+      }
+    }
+  }
+}

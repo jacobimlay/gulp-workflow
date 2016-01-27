@@ -1,0 +1,9 @@
+.footer {
+  width: 100%;
+  border-top: 2px solid;
+  padding: 10px;
+  @include outer-container();
+  div {
+    @include span-columns(12);
+  }
+}
