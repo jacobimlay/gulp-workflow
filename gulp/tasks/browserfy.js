@@ -12,7 +12,6 @@ var rename = require('gulp-rename')
 var uglify = require('gulp-uglify')
 var sourcemaps = require('gulp-sourcemaps')
 
-
 /* nicer browserify errors */
 var gutil = require('gulp-util')
 var chalk = require('chalk')
@@ -44,7 +43,9 @@ function map_error(err) {
 
 gulp.task('watchify', function () {
   var args = merge(watchify.args, { debug: true })
-  var bundler = watchify(browserify('./content/js/src/app.js', args)).transform(babelify, { /* opts */ })
+  var bundler = watchify(browserify('./content/js/src/app.js', args)).transform(babelify, {
+    ignore: /vendor/,
+  })
   bundle_js(bundler)
 
   bundler.on('update', function () {
@@ -68,14 +69,18 @@ function bundle_js(bundler) {
 
 // Without watchify
 gulp.task('browserify', function () {
-  var bundler = browserify('./content/js/src/app.js', { debug: true }).transform(babelify, {/* options */ })
+  var bundler = browserify('./content/js/src/app.js', { debug: true }).transform(babelify, {
+    ignore: /vendor/,
+   })
 
   return bundle_js(bundler)
 })
 
 // Without sourcemaps
 gulp.task('browserify-production', function () {
-  var bundler = browserify('./content/js/src/app.js').transform(babelify, {/* options */ })
+  var bundler = browserify('./content/js/src/app.js').transform(babelify, {
+    ignore: /vendor/,
+  })
 
   return bundler.bundle()
     .on('error', map_error)
