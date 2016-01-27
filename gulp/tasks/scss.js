@@ -13,7 +13,6 @@ gulp.task('scss', ['glob'], function () {
     .pipe(sass({
       includePaths: require('node-neat').includePaths
     }))
-    
     .pipe(gulp.dest('./content/stylesheets/css/build'))
     .pipe(rename('app.min.css'))
     .pipe(minifyCss())
